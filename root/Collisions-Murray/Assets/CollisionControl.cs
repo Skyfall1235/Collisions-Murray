@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollisionControl : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class CollisionControl : MonoBehaviour
     void StartGame()
     {
         player = new Player();
-        player.PlayerHealth = 10;
+        player.PlayerHealth = 100;
         player.PlayerScore = 0;
     }
 
@@ -33,10 +34,12 @@ public class CollisionControl : MonoBehaviour
         if (player.PlayerHealth <= 0)
         {
             //end the game and allow the player to return
+            SceneManager.LoadScene("LoseScene");
         }
         if (player.PlayerScore >= 10)
         {
             //end the game and allo wthe player to return, as a WINNER
+            SceneManager.LoadScene("WinScene");
         }
     }
 
@@ -49,14 +52,18 @@ public class CollisionControl : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //does it really need to be complicated?
-
+        Debug.Log("hitting something");
         if (collision.gameObject.tag == "Trap")
         {
             player.PlayerHealth -= 10;
+            collision.gameObject.SetActive(false);
+            Debug.Log("hitting a trap");
         }
         if (collision.gameObject.tag == "Pickup")
         {
             player.PlayerScore += 1;
+            collision.gameObject.SetActive(false);
+            Debug.Log("hitting a pickup");
         }
     }
 }

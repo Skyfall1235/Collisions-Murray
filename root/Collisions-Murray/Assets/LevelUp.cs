@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelUp : MonoBehaviour
 {
-    public void OnClick()
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    public void OnClickStart()
     {
         if(SceneManager.GetActiveScene().name == "MainMenu")
         {
@@ -16,5 +21,9 @@ public class LevelUp : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         }
         
+    }
+    public void OnClickRestart()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
