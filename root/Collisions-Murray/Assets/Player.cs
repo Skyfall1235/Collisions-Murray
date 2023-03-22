@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player
 {
-    // Start is called before the first frame update
-    void Start()
+    private int playerHealth;
+    private int playerScore;
+
+    public int PlayerHealth
     {
-        
+        get { return playerHealth; }
+        set { playerHealth = value; }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public int PlayerScore
+    { 
+        get { return playerScore; } 
+        set {  playerScore = value; } 
     }
 }
